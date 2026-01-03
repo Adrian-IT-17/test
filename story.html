@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Story - SUKBIT</title>
+
+  <!-- Explicit weights so Cormorant doesn't render bold -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-cream: #f6f1ea;
+      --brand-brown: #9b846a;
+      --bg-light: #f7efe9;
+      --text-brown: #4a3a2a;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#e8ddd0;
+      color:var(--text-brown);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Make sure Cormorant headings are rendered in light weight and not artificially bolded */
+    .cg-display, .cg-display * {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-synthesis: none;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* HEADER */
+    header {
+      background:linear-gradient(135deg,#a89278 0%,var(--brand-brown) 100%);
+      padding:15px 50px;
+      position:sticky; top:0; z-index:1000;
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto}
+    .logo{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:#fff}
+    .logo img{height:34px;display:block;margin-right:-8px;filter:brightness(1.02) saturate(0.95);transform:translateY(-3px)}
+    .logo span{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:#fff;transform:translateY(1px)}
+    .nav-links{display:flex;gap:30px;list-style:none}
+    .nav-links a{color:#fff;text-decoration:none;font-size:11px;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icons{display:flex;gap:18px;color:#fff;font-size:11px;align-items:center}
+    .nav-icon{cursor:pointer;transition:all 0.3s ease;padding:8px 16px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);font-family:'Montserrat',sans-serif;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icon:hover{background:rgba(255,255,255,0.2);transform:scale(1.05)}
+
+    .s-logo{
+      display:inline-block;
+      width:28px;
+      height:28px;
+      background:var(--text-brown);
+      -webkit-mask-image:url('0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png');
+      -webkit-mask-repeat:no-repeat;
+      -webkit-mask-size:contain;
+      mask-image:url('0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png');
+      mask-repeat:no-repeat;
+      mask-size:contain;
+      vertical-align:middle;
+      margin:0 -8px 0 4px;
+      transform:translateY(-4px);
+    }
+
+    /* FOOTER */
+    footer{background:#5a4a3a;color:#d4c4b0;padding:36px 40px 28px}
+    .footer-logo{text-align:center;margin-bottom:28px}
+    .footer-logo-text{display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;color:#fff}
+    .footer-logo-text img{height:26px;margin-right:-6px;filter:brightness(1.02) saturate(0.95);transform:translateY(-3px)}
+    .footer-logo-text span{transform:translateY(1px)}
+    .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1300px;margin:0 auto}
+    footer h4{color:#fff;font-size:13px;font-weight:700;margin-bottom:16px;font-family:'Montserrat',sans-serif}
+    footer li,footer p{font-size:11px;line-height:1.5;margin-bottom:10px;font-family:'Montserrat',sans-serif}
+    footer ul{padding:0}
+    footer a{color:#d4c4b0;text-decoration:none}
+    .newsletter-form{display:flex;margin-top:10px}
+    input{flex:1;padding:10px 13px;border:none;background:#6f5b48;color:#fff;font-size:11px;font-family:'Montserrat',sans-serif}
+    input::placeholder{color:#a89278}
+    .newsletter-form button{padding:10px 20px;background:#8b7355;color:#fff;border:none;font-size:14px;cursor:pointer;font-family:'Montserrat',sans-serif}
+
+    /* DROPDOWN MENUS */
+    .dropdown{position:relative}
+    .dropdown-toggle{color:#fff;text-decoration:none;font-size:11px;font-weight:400;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:4px}
+    .dropdown-toggle::after{content:'▼';font-size:8px;transition:transform 0.3s ease}
+    .dropdown:hover .dropdown-toggle::after{transform:rotate(180deg)}
+    .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;min-width:200px;box-shadow:0 8px 24px rgba(0,0,0,0.15);border-radius:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s ease;z-index:1000;margin-top:10px}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-menu a{display:block;padding:12px 20px;color:var(--text-brown);text-decoration:none;font-size:12px;font-family:'Montserrat',sans-serif;transition:background 0.3s ease}
+    .dropdown-menu a:hover{background:var(--bg-light)}
+    .dropdown-menu a:first-child{border-radius:8px 8px 0 0}
+    .dropdown-menu a:last-child{border-radius:0 0 8px 8px}
+
+    /* PAGE CONTENT */
+    .page-hero{
+      position:relative;
+      height:40vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:
+        linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.2)),
+        url("/mnt/data/399f8875-5083-447d-936e-0ed18db1957d.png");
+      background-size:cover;
+      background-position:center;
+      border-bottom:5px solid #efe7e1;
+    }
+
+    .page-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:48px;
+      color:#fff;
+      text-shadow:2px 4px 10px rgba(0,0,0,0.25);
+      font-weight:400;
+    }
+
+    .content{
+      max-width:900px;
+      margin:0 auto;
+      padding:60px 40px;
+      background:#fff;
+      margin:40px auto;
+      border-radius:15px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .content h2{
+      font-family:'Cormorant Garamond',serif;
+      font-size:32px;
+      color:var(--text-brown);
+      margin-bottom:20px;
+      font-weight:400;
+    }
+
+    .content h3{
+      font-family:'Cormorant Garamond',serif;
+      font-size:24px;
+      color:var(--brand-brown);
+      margin-bottom:15px;
+      font-weight:400;
+    }
+
+    .content p{
+      font-size:16px;
+      line-height:1.6;
+      margin-bottom:20px;
+      color:var(--text-brown);
+    }
+
+    .timeline{
+      position:relative;
+      margin:40px 0;
+      padding-left:30px;
+    }
+
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:2px;
+      background:var(--brand-brown);
+    }
+
+    .timeline-item{
+      position:relative;
+      margin-bottom:40px;
+      padding-left:40px;
+    }
+
+    .timeline-item::before{
+      content:'';
+      position:absolute;
+      left:-31px;
+      top:5px;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--brand-brown);
+      border:3px solid #fff;
+    }
+
+    .timeline-year{
+      font-family:'Cormorant Garamond',serif;
+      font-size:20px;
+      color:var(--brand-brown);
+      margin-bottom:10px;
+      font-weight:400;
+    }
+
+    .quote-box{
+      background:var(--bg-light);
+      padding:30px;
+      border-radius:10px;
+      border-left:4px solid var(--brand-brown);
+      margin:30px 0;
+      font-style:italic;
+    }
+
+    .quote-box p{
+      margin-bottom:10px;
+      font-size:18px;
+      line-height:1.6;
+    }
+
+    .quote-box .author{
+      text-align:right;
+      font-style:normal;
+      font-weight:600;
+      color:var(--brand-brown);
+    }
+
+    .back-link{
+      display:inline-block;
+      margin-top:30px;
+      padding:12px 24px;
+      background:var(--brand-brown);
+      color:#fff;
+      text-decoration:none;
+      border-radius:25px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      transition:all 0.3s ease;
+    }
+
+    .back-link:hover{
+      background:#8a735a;
+      transform:scale(1.02);
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .content{
+        margin:20px;
+        padding:40px 30px;
+      }
+      .page-title{
+        font-size:36px;
+      }
+      .timeline{
+        padding-left:20px;
+      }
+      .timeline-item{
+        padding-left:30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo cg-display" aria-label="SUKBIT brand">
+        <img src="0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png" alt="S mark">
+        <span>UKBIT</span>
+      </div>
+
+      <ul class="nav-links">
+        <li class="dropdown">
+          <span class="dropdown-toggle">SHOP NOW</span>
+          <div class="dropdown-menu">
+            <a href="products.html">All Bags</a>
+            <a href="products.html">Handbags</a>
+            <a href="products.html">Tote Bags</a>
+            <a href="products.html">Crossbody Bags</a>
+            <a href="products.html">Clutches</a>
+            <a href="products.html">New Arrivals</a>
+            <a href="products.html">Best Sellers</a>
+            <a href="products.html">Sale</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">MY SUKBIT</span>
+          <div class="dropdown-menu">
+            <a href="account.html">My Account</a>
+            <a href="account.html">Order History</a>
+            <a href="account.html">Wishlist</a>
+            <a href="contact.html">Custom Orders</a>
+            <a href="account.html">Track Order</a>
+            <a href="contact.html">Returns</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">MORE INFO</span>
+          <div class="dropdown-menu">
+            <a href="about.html">About Us</a>
+            <a href="story.html">Our Story</a>
+            <a href="craftsmanship.html">Craftsmanship</a>
+            <a href="materials.html">Materials</a>
+            <a href="care.html">Care Guide</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="shipping.html">Shipping Info</a>
+            <a href="size.html">Size Guide</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-icons">
+        <span class="nav-icon">SEARCH</span>
+        <span class="nav-icon">ACCOUNT</span>
+        <span class="nav-icon">CART</span>
+      </div>
+    </nav>
+  </header>
+
+  <section class="page-hero" aria-label="Our Story Hero">
+    <h1 class="page-title cg-display">Our Story</h1>
+  </section>
+
+  <main class="content">
+    <h2 class="cg-display">The Journey of <span class="s-logo"></span>UKBIT</h2>
+    <p>Every great brand has a story, and ours begins in the heart of the Philippines, where tradition meets innovation, and craftsmanship meets contemporary design.</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <h3 class="cg-display">The Beginning</h3>
+        <p>SUKBIT was born from a simple observation: the incredible artistry of Filipino weavers deserved a modern stage. Our founder, Elijah Mae Adalin, grew up watching her grandmother weave beautiful bags from abaca fibers, a skill passed down through generations.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <h3 class="cg-display">First Collection</h3>
+        <p>Working with just five local artisans, we launched our first collection of 50 handwoven bags. Each piece told a story of tradition, skill, and sustainable fashion. The response was overwhelming - we sold out within weeks.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2020</div>
+        <h3 class="cg-display">Growing Together</h3>
+        <p>Despite global challenges, we expanded our artisan community to 25 weavers across three provinces. We developed new designs that blended traditional techniques with modern aesthetics, creating pieces that appealed to both local and international markets.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2021</div>
+        <h3 class="cg-display">Sustainability Focus</h3>
+        <p>We formalized our commitment to sustainability, ensuring all materials were ethically sourced and all processes environmentally friendly. We became proud members of the Sustainable Fashion Alliance of the Philippines.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2022</div>
+        <h3 class="cg-display">International Recognition</h3>
+        <p>Our bags were featured in international fashion magazines and worn by celebrities who appreciated our commitment to authentic craftsmanship. We expanded our reach to customers in over 15 countries.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <h3 class="cg-display">Community Impact</h3>
+        <p>Today, SUKBIT supports over 100 artisan families, providing fair wages and sustainable livelihoods. We've established weaving centers in rural communities, preserving traditional techniques while empowering the next generation of weavers.</p>
+      </div>
+    </div>
+    
+    <div class="quote-box">
+      <p>"SUKBIT isn't just about bags - it's about preserving a piece of Filipino heritage, one weave at a time. Every bag carries the dreams and skills of our artisans, and connects their stories to yours."</p>
+      <p class="author">— Elijah Mae Adalin, Founder</p>
+    </div>
+    
+    <h3 class="cg-display">The Meaning Behind SUKBIT</h3>
+    <p>The name "SUKBIT" comes from a local Filipino term that means "to weave together" or "to intertwine." This perfectly represents our philosophy: bringing together traditional craftsmanship with modern design, connecting artisans with customers worldwide, and weaving together stories of culture, sustainability, and style.</p>
+    
+    <h3 class="cg-display">Looking Forward</h3>
+    <p>As we continue to grow, our commitment remains unchanged: to create beautiful, sustainable bags that honor Filipino craftsmanship while meeting the needs of the modern consumer. Every SUKBIT bag is more than an accessory - it's a piece of living tradition, a statement of sustainable fashion, and a connection to the skilled hands that created it.</p>
+    
+    <p>Thank you for being part of our story. When you choose SUKBIT, you're not just buying a bag - you're supporting a community, preserving a tradition, and joining a movement toward more conscious, beautiful fashion.</p>
+    
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </main>
+
+  <footer>
+    <div class="footer-logo">
+      <div class="footer-logo-text cg-display">
+        <img src="0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png" alt="S mark">
+        <span>UKBIT</span>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" style="color:#d4c4b0">Search our Website</a></li>
+          <li><a href="#" style="color:#d4c4b0">About Us</a></li>
+          <li><a href="#" style="color:#d4c4b0">FAQ</a></li>
+          <li><a href="#" style="color:#d4c4b0">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact Us</h4>
+        <p>For inquiries and bulk orders,</p>
+        <p>email us at</p>
+        <p>shop@sukbitph.com</p>
+        <p style="margin-top:12px">Phone Number:</p>
+        <p>(63) 09123-4567</p>
+      </div>
+
+      <div>
+        <h4>Payment Options</h4>
+        <ul>
+          <li>Gcash</li>
+          <li>BDO</li>
+          <li>BPI</li>
+          <li>VISA CARD</li>
+          <li>MASTERCARD</li>
+          <li>PAYPAL</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Visit Us</h4>
+        <p>Philippines at ...</p>
+        <h4 style="margin-top:20px">Subscribe to our emails</h4>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Email">
+          <button type="submit">→</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

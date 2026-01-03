@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us - SUKBIT</title>
+
+  <!-- Explicit weights so Cormorant doesn't render bold -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-cream: #f6f1ea;
+      --brand-brown: #9b846a;
+      --bg-light: #f7efe9;
+      --text-brown: #4a3a2a;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#e8ddd0;
+      color:var(--text-brown);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Make sure Cormorant headings are rendered in light weight and not artificially bolded */
+    .cg-display, .cg-display * {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-synthesis: none;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* HEADER */
+    header {
+      background:linear-gradient(135deg,#a89278 0%,var(--brand-brown) 100%);
+      padding:15px 50px;
+      position:sticky; top:0; z-index:1000;
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto}
+    .logo{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:#fff}
+    .logo img{height:34px;display:block;margin-right:-8px;filter:brightness(1.02) saturate(0.95);transform:translateY(-3px)}
+    .logo span{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:#fff;transform:translateY(1px)}
+    .nav-links{display:flex;gap:30px;list-style:none}
+    .nav-links a{color:#fff;text-decoration:none;font-size:11px;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icons{display:flex;gap:18px;color:#fff;font-size:11px;align-items:center}
+    .nav-icon{cursor:pointer;transition:all 0.3s ease;padding:8px 16px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);font-family:'Montserrat',sans-serif;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icon:hover{background:rgba(255,255,255,0.2);transform:scale(1.05)}
+
+    /* DROPDOWN MENUS */
+    .dropdown{position:relative}
+    .dropdown-toggle{color:#fff;text-decoration:none;font-size:11px;font-weight:400;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:4px}
+    .dropdown-toggle::after{content:'▼';font-size:8px;transition:transform 0.3s ease}
+    .dropdown:hover .dropdown-toggle::after{transform:rotate(180deg)}
+    .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;min-width:200px;box-shadow:0 8px 24px rgba(0,0,0,0.15);border-radius:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s ease;z-index:1000;margin-top:10px}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-menu a{display:block;padding:12px 20px;color:var(--text-brown);text-decoration:none;font-size:12px;font-family:'Montserrat',sans-serif;transition:background 0.3s ease}
+    .dropdown-menu a:hover{background:var(--bg-light)}
+    .dropdown-menu a:first-child{border-radius:8px 8px 0 0}
+    .dropdown-menu a:last-child{border-radius:0 0 8px 8px}
+
+    /* PAGE CONTENT */
+    .page-hero{
+      position:relative;
+      height:40vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:
+        linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.2)),
+        url("/mnt/data/399f8875-5083-447d-936e-0ed18db1957d.png");
+      background-size:cover;
+      background-position:center;
+      border-bottom:5px solid #efe7e1;
+    }
+
+    .page-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:48px;
+      color:#fff;
+      text-shadow:2px 4px 10px rgba(0,0,0,0.25);
+      font-weight:400;
+    }
+
+    .content{
+      max-width:900px;
+      margin:0 auto;
+      padding:60px 40px;
+      background:#fff;
+      margin:40px auto;
+      border-radius:15px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .content h2{
+      font-family:'Cormorant Garamond',serif;
+      font-size:32px;
+      color:var(--text-brown);
+      margin-bottom:20px;
+      font-weight:400;
+    }
+
+    .content h3{
+      font-family:'Cormorant Garamond',serif;
+      font-size:24px;
+      color:var(--brand-brown);
+      margin-bottom:15px;
+      font-weight:400;
+    }
+
+    .content p{
+      font-size:16px;
+      line-height:1.6;
+      margin-bottom:20px;
+      color:var(--text-brown);
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      margin:40px 0;
+    }
+
+    .contact-info{
+      background:var(--bg-light);
+      padding:30px;
+      border-radius:10px;
+    }
+
+    .contact-info h3{
+      margin-bottom:20px;
+    }
+
+    .contact-info p{
+      margin-bottom:15px;
+      font-size:15px;
+    }
+
+    .contact-form{
+      background:var(--bg-light);
+      padding:30px;
+      border-radius:10px;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:600;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .form-group input,
+    .form-group textarea{
+      width:100%;
+      padding:12px;
+      border:2px solid var(--brand-brown);
+      border-radius:8px;
+      font-family:'Montserrat',sans-serif;
+      font-size:14px;
+      background:#fff;
+      color:var(--text-brown);
+    }
+
+    .form-group textarea{
+      height:120px;
+      resize:vertical;
+    }
+
+    .submit-btn{
+      background:var(--brand-brown);
+      color:#fff;
+      border:none;
+      padding:15px 30px;
+      border-radius:25px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:all 0.3s ease;
+    }
+
+    .submit-btn:hover{
+      background:#8a735a;
+      transform:scale(1.02);
+    }
+
+    .back-link{
+      display:inline-block;
+      margin-top:30px;
+      padding:12px 24px;
+      background:var(--brand-brown);
+      color:#fff;
+      text-decoration:none;
+      border-radius:25px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      transition:all 0.3s ease;
+    }
+
+    .back-link:hover{
+      background:#8a735a;
+      transform:scale(1.02);
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .content{
+        margin:20px;
+        padding:40px 30px;
+      }
+      .page-title{
+        font-size:36px;
+      }
+      .contact-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo cg-display" aria-label="SUKBIT brand">
+        <img src="0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png" alt="S mark">
+        <span>UKBIT</span>
+      </div>
+
+      <ul class="nav-links">
+        <li class="dropdown">
+          <span class="dropdown-toggle">SHOP NOW</span>
+          <div class="dropdown-menu">
+            <a href="index.html">All Bags</a>
+            <a href="index.html">Handbags</a>
+            <a href="index.html">Tote Bags</a>
+            <a href="index.html">Crossbody Bags</a>
+            <a href="index.html">Clutches</a>
+            <a href="index.html">New Arrivals</a>
+            <a href="index.html">Best Sellers</a>
+            <a href="index.html">Sale</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">MY SUKBIT</span>
+          <div class="dropdown-menu">
+            <a href="index.html">My Account</a>
+            <a href="index.html">Order History</a>
+            <a href="index.html">Wishlist</a>
+            <a href="index.html">Custom Orders</a>
+            <a href="index.html">Track Order</a>
+            <a href="index.html">Returns</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">MORE INFO</span>
+          <div class="dropdown-menu">
+            <a href="about.html">About Us</a>
+            <a href="story.html">Our Story</a>
+            <a href="craftsmanship.html">Craftsmanship</a>
+            <a href="materials.html">Materials</a>
+            <a href="care.html">Care Guide</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="shipping.html">Shipping Info</a>
+            <a href="size.html">Size Guide</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-icons">
+        <span class="nav-icon">SEARCH</span>
+        <span class="nav-icon">ACCOUNT</span>
+        <span class="nav-icon">CART</span>
+      </div>
+    </nav>
+  </header>
+
+  <section class="page-hero" aria-label="Contact Us Hero">
+    <h1 class="page-title cg-display">Contact Us</h1>
+  </section>
+
+  <main class="content">
+    <h2 class="cg-display">Get in Touch</h2>
+    <p>We'd love to hear from you! Whether you have questions about our products, want to place a custom order, or just want to learn more about SUKBIT, don't hesitate to reach out.</p>
+    
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 class="cg-display">Contact Information</h3>
+        <p><strong>Email:</strong> shop@sukbitph.com</p>
+        <p><strong>Phone:</strong> (63) 09123-4567</p>
+        <p><strong>Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM PHT</p>
+        <p><strong>Location:</strong> Philippines</p>
+        
+        <h3 class="cg-display">Business Inquiries</h3>
+        <p>For bulk orders, wholesale partnerships, or media inquiries, please email us at <strong>business@sukbitph.com</strong></p>
+      </div>
+      
+      <div class="contact-form">
+        <h3 class="cg-display">Send us a Message</h3>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+    
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </main>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(event.target);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+      };
+      
+      // Here you would normally send this data to your server
+      console.log('Form submitted:', data);
+      alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>

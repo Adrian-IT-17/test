@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Track Order - SUKBIT</title>
+
+  <!-- Explicit weights so Cormorant doesn't render bold -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-cream: #f6f1ea;
+      --brand-brown: #9b846a;
+      --bg-light: #f7efe9;
+      --text-brown: #4a3a2a;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#e8ddd0;
+      color:var(--text-brown);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Make sure Cormorant headings are rendered in light weight and not artificially bolded */
+    .cg-display, .cg-display * {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-synthesis: none;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* HEADER */
+    header {
+      background:linear-gradient(135deg,#a89278 0%,var(--brand-brown) 100%);
+      padding:15px 50px;
+      position:sticky; top:0; z-index:1000;
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto}
+    .logo{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:#fff}
+    .logo img{height:34px;display:block;margin-right:-8px;filter:brightness(1.02) saturate(0.95);transform:translateY(-3px)}
+    .logo span{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:#fff;transform:translateY(1px)}
+    .nav-links{display:flex;gap:30px;list-style:none}
+    .nav-links a{color:#fff;text-decoration:none;font-size:11px;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icons{display:flex;gap:18px;color:#fff;font-size:11px;align-items:center}
+    .nav-icon{cursor:pointer;transition:all 0.3s ease;padding:8px 16px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);font-family:'Montserrat',sans-serif;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icon:hover{background:rgba(255,255,255,0.2);transform:scale(1.05)}
+
+    /* DROPDOWN MENUS */
+    .dropdown{position:relative}
+    .dropdown-toggle{color:#fff;text-decoration:none;font-size:11px;font-weight:400;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:4px}
+    .dropdown-toggle::after{content:'▼';font-size:8px;transition:transform 0.3s ease}
+    .dropdown:hover .dropdown-toggle::after{transform:rotate(180deg)}
+    .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;min-width:200px;box-shadow:0 8px 24px rgba(0,0,0,0.15);border-radius:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s ease;z-index:1000;margin-top:10px}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-menu a{display:block;padding:12px 20px;color:var(--text-brown);text-decoration:none;font-size:12px;font-family:'Montserrat',sans-serif;transition:background 0.3s ease}
+    .dropdown-menu a:hover{background:var(--bg-light)}
+    .dropdown-menu a:first-child{border-radius:8px 8px 0 0}
+    .dropdown-menu a:last-child{border-radius:0 0 8px 8px}
+
+    /* PAGE CONTENT */
+    .page-hero{
+      position:relative;
+      height:40vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:
+        linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.2)),
+        url("/mnt/data/399f8875-5083-447d-936e-0ed18db1957d.png");
+      background-size:cover;
+      background-position:center;
+      border-bottom:5px solid #efe7e1;
+    }
+
+    .page-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:48px;
+      color:#fff;
+      text-shadow:2px 4px 10px rgba(0,0,0,0.25);
+      font-weight:400;
+    }
+
+    .content{
+      max-width:900px;
+      margin:0 auto;
+      padding:60px 40px;
+      background:#fff;
+      margin:40px auto;
+      border-radius:15px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .content h2{
+      font-family:'Cormorant Garamond',serif;
+      font-size:32px;
+      color:var(--text-brown);
+      margin-bottom:20px;
+      font-weight:400;
+    }
+
+    .content h3{
+      font-family:'Cormorant Garamond',serif;
+      font-size:24px;
+      color:var(--brand-brown);
+      margin-bottom:15px;
+      font-weight:400;
+    }
+
+    .content p{
+      font-size:16px;
+      line-height:1.6;
+      margin-bottom:20px;
+      color:var(--text-brown);
+    }
+
+    .track-form{
+      background:var(--bg-light);
+      padding:30px;
+      border-radius:10px;
+      margin-bottom:40px;
+    }
+
+    .track-form h3{
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:600;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .form-group input{
+      width:100%;
+      padding:12px;
+      border:2px solid #e0e0e0;
+      border-radius:8px;
+      font-family:'Montserrat',sans-serif;
+      font-size:14px;
+      background:#fff;
+      color:var(--text-brown);
+      transition:border-color 0.3s ease;
+    }
+
+    .form-group input:focus{
+      outline:none;
+      border-color:var(--brand-brown);
+    }
+
+    .track-btn{
+      background:var(--brand-brown);
+      color:#fff;
+      border:none;
+      padding:15px 30px;
+      border-radius:25px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      width:100%;
+    }
+
+    .track-btn:hover{
+      background:#8a735a;
+      transform:scale(1.02);
+    }
+
+    .tracking-result{
+      display:none;
+      background:#fff;
+      border:2px solid var(--brand-brown);
+      border-radius:10px;
+      padding:30px;
+      margin-top:30px;
+    }
+
+    .tracking-result.active{
+      display:block;
+    }
+
+    .tracking-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:25px;
+      padding-bottom:15px;
+      border-bottom:1px solid #e0e0e0;
+    }
+
+    .tracking-header h3{
+      margin-bottom:5px;
+    }
+
+    .tracking-header p{
+      font-size:14px;
+      margin-bottom:0;
+    }
+
+    .status-badge{
+      display:inline-block;
+      padding:8px 16px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .status-processing{
+      background:#fff3e0;
+      color:#f57c00;
+    }
+
+    .status-shipped{
+      background:#e3f2fd;
+      color:#1976d2;
+    }
+
+    .status-delivered{
+      background:#e8f5e8;
+      color:#2e7d32;
+    }
+
+    .tracking-timeline{
+      position:relative;
+      padding-left:30px;
+    }
+
+    .tracking-timeline::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:2px;
+      background:var(--brand-brown);
+    }
+
+    .timeline-item{
+      position:relative;
+      margin-bottom:25px;
+      padding-left:30px;
+    }
+
+    .timeline-item::before{
+      content:'';
+      position:absolute;
+      left:-31px;
+      top:5px;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--brand-brown);
+      border:3px solid #fff;
+    }
+
+    .timeline-item.completed::before{
+      background:#4caf50;
+    }
+
+    .timeline-date{
+      font-size:14px;
+      color:var(--brand-brown);
+      margin-bottom:5px;
+    }
+
+    .timeline-title{
+      font-weight:600;
+      margin-bottom:5px;
+    }
+
+    .timeline-desc{
+      font-size:14px;
+      color:#666;
+    }
+
+    .back-link{
+      display:inline-block;
+      margin-top:30px;
+      padding:12px 24px;
+      background:var(--brand-brown);
+      color:#fff;
+      text-decoration:none;
+      border-radius:25px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      transition:all 0.3s ease;
+    }
+
+    .back-link:hover{
+      background:#8a735a;
+      transform:scale(1.02);
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .content{
+        margin:20px;
+        padding:40px 30px;
+      }
+      .page-title{
+        font-size:36px;
+      }
+      .tracking-header{
+        flex-direction:column;
+        text-align:left;
+        gap:15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo cg-display" aria-label="SUKBIT brand">
+        <img src="0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png" alt="S mark">
+        <span>UKBIT</span>
+      </div>
+
+      <ul class="nav-links">
+        <li class="dropdown">
+          <span class="dropdown-toggle">SHOP NOW</span>
+          <div class="dropdown-menu">
+            <a href="products.html">All Bags</a>
+            <a href="products.html">Handbags</a>
+            <a href="products.html">Tote Bags</a>
+            <a href="products.html">Crossbody Bags</a>
+            <a href="products.html">Clutches</a>
+            <a href="products.html">New Arrivals</a>
+            <a href="products.html">Best Sellers</a>
+            <a href="products.html">Sale</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">MY SUKBIT</span>
+          <div class="dropdown-menu">
+            <a href="account.html">My Account</a>
+            <a href="account.html">Order History</a>
+            <a href="account.html">Wishlist</a>
+            <a href="contact.html">Custom Orders</a>
+            <a href="track.html">Track Order</a>
+            <a href="contact.html">Returns</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <span class="dropdown-toggle">MORE INFO</span>
+          <div class="dropdown-menu">
+            <a href="about.html">About Us</a>
+            <a href="story.html">Our Story</a>
+            <a href="craftsmanship.html">Craftsmanship</a>
+            <a href="materials.html">Materials</a>
+            <a href="care.html">Care Guide</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="shipping.html">Shipping Info</a>
+            <a href="size.html">Size Guide</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav-icons">
+        <span class="nav-icon">SEARCH</span>
+        <span class="nav-icon">ACCOUNT</span>
+        <span class="nav-icon">CART</span>
+      </div>
+    </nav>
+  </header>
+
+  <section class="page-hero" aria-label="Track Order Hero">
+    <h1 class="page-title cg-display">Track Your Order</h1>
+  </section>
+
+  <main class="content">
+    <h2 class="cg-display">Where is your SUKBIT?</h2>
+    <p>Enter your order number and email address to track the current status of your handwoven bag as it makes its way to you.</p>
+    
+    <div class="track-form">
+      <h3 class="cg-display">Track Your Package</h3>
+      <form onsubmit="trackOrder(event)">
+        <div class="form-group">
+          <label for="orderNumber">Order Number</label>
+          <input type="text" id="orderNumber" name="orderNumber" placeholder="e.g., SUKBIT-2023-001" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        
+        <button type="submit" class="track-btn">Track Order</button>
+      </form>
+    </div>
+    
+    <div id="trackingResult" class="tracking-result">
+      <div class="tracking-header">
+        <div>
+          <h3 class="cg-display">Order #SUKBIT-2023-002</h3>
+          <p>1x SUKBIT Crossbody Bag - Earth Brown</p>
+        </div>
+        <span class="status-badge status-shipped">Shipped</span>
+      </div>
+      
+      <div class="tracking-timeline">
+        <div class="timeline-item completed">
+          <div class="timeline-date">January 5, 2024 - 10:30 AM</div>
+          <div class="timeline-title">Order Placed</div>
+          <div class="timeline-desc">Your order has been successfully placed and confirmed.</div>
+        </div>
+        
+        <div class="timeline-item completed">
+          <div class="timeline-date">January 7, 2024 - 2:15 PM</div>
+          <div class="timeline-title">Order Processing</div>
+          <div class="timeline-desc">Your SUKBIT bag is being carefully handcrafted by our artisans.</div>
+        </div>
+        
+        <div class="timeline-item completed">
+          <div class="timeline-date">January 10, 2024 - 11:00 AM</div>
+          <div class="timeline-title">Quality Check</div>
+          <div class="timeline-desc">Your bag has passed our quality inspection and is ready for shipping.</div>
+        </div>
+        
+        <div class="timeline-item completed">
+          <div class="timeline-date">January 11, 2024 - 3:45 PM</div>
+          <div class="timeline-title">Shipped</div>
+          <div class="timeline-desc">Your order has been shipped via LBC Express. Tracking number: PH123456789</div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">Expected: January 15, 2024</div>
+          <div class="timeline-title">Out for Delivery</div>
+          <div class="timeline-desc">Your package is with the delivery courier and will arrive soon.</div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">Expected: January 15, 2024</div>
+          <div class="timeline-title">Delivered</div>
+          <div class="timeline-desc">Your SUKBIT bag will be delivered to your shipping address.</div>
+        </div>
+      </div>
+    </div>
+    
+    <h3 class="cg-display">Shipping Information</h3>
+    <p>Once your order is shipped, you'll receive an email with tracking information. You can also check back here for real-time updates on your order's journey from our workshop to your doorstep.</p>
+    
+    <p>For international orders, please allow additional time for customs processing. Delivery times may vary depending on your location and local postal service efficiency.</p>
+    
+    <p>If you have any questions about your order or need assistance with tracking, please don't hesitate to <a href="contact.html">contact our customer service team</a>.</p>
+    
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </main>
+
+  <script>
+    function trackOrder(event) {
+      event.preventDefault();
+      
+      const orderNumber = document.getElementById('orderNumber').value;
+      const email = document.getElementById('email').value;
+      
+      // Show tracking result (in a real application, this would fetch data from a server)
+      const trackingResult = document.getElementById('trackingResult');
+      trackingResult.classList.add('active');
+      
+      // Scroll to tracking result
+      trackingResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      console.log('Tracking order:', { orderNumber, email });
+    }
+  </script>
+
+</body>
+</html>
